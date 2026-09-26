@@ -26,6 +26,36 @@ $$Adjusted\_EV = (Reported\_EBITDA \times Adjusted\_Multiple) - Direct\_Cyber\_L
 
 ---
 
+## ⚡ Architecture & Diligence Pipeline
+
+```mermaid
+flowchart TD
+    subgraph VDRDataRooms["Virtual Data Room (VDR) & Threat Intelligence"]
+        Docs["Confidential VDR Ingestion\n(Financials, Customer Contracts, Pentests)"]
+        Scanner["Perimeter Security & CVE Telemetry\n(Exposed CVEs, Leak Databases)"]
+    end
+
+    subgraph DiligenceOS["M&A VDR Diligence OS Core"]
+        Parser["VDRParser (Document & Metric Extractor)"]
+        Evaluator["DiligenceEvaluator\n(Calculates EBITDA Haircuts & Remediation Debt)"]
+        Client["InvestorOSClient (Portfolio Risk OS Integration)"]
+        
+        Docs --> Parser
+        Scanner --> Parser
+        Parser --> Evaluator
+        Evaluator --> Client
+    end
+
+    subgraph DiligenceDeliverables["Institutional Deal Memo & Valuation Impact"]
+        Memo["Defensible IC Deal Memo\n(Haircut %, Adjusted Multiple, Balance Sheet Debt)"]
+        ClosingAdvice["LOI Renegotiation & Reps/Warranties Escrow Specs"]
+        Client --> Memo
+        Client --> ClosingAdvice
+    end
+```
+
+---
+
 ## 🚀 Terminal Diligence Run
 
 ```bash
